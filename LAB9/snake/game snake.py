@@ -9,9 +9,9 @@ is_running, lose = True, False
 clock = pg.time.Clock()
 score = pg.font.SysFont("Verdana", 20)
 surf = pg.Surface((390, 390), pg.SRCALPHA)
-bg = pg.image.load(r"C:\Users\Самир\Desktop\pp2\LAB9\snake\images\background.jpg")
+bg = pg.image.load(r"C:\Users\Самир\Desktop\pp2\lab9\snake\images\background.jpg")
 bg = pg.transform.scale(bg, (w, h))
-gameover = pg.image.load(r"C:\Users\Самир\Desktop\pp2\LAB9\snake\images\game_over.jpg")
+gameover = pg.image.load(r"C:\Users\Самир\Desktop\pp2\lab9\snake\images\game_over.jpg")
 gameover = pg.transform.scale(gameover, (390, 390))
 
 class Food:
@@ -21,8 +21,8 @@ class Food:
         self.y1 = randrange(50, h-50, step)
         self.x2 = randrange(50, w-50, step)
         self.y2 = randrange(50, h-50, step)
-        self.pic_cherry = pg.image.load(r"C:\Users\Самир\Desktop\pp2\LAB9\snake\images\pixel_cherry.png")
-        self.pic_banana = pg.image.load(r"C:\Users\Самир\Desktop\pp2\LAB9\snake\images\banana_pixel.png")
+        self.pic_cherry = pg.image.load(r"C:\Users\Самир\Desktop\pp2\lab9\snake\images\pixel_cherry.png")
+        self.pic_banana = pg.image.load(r"C:\Users\Самир\Desktop\pp2\lab9\snake\images\banana_pixel.png")
         self.pic_cherry = pg.transform.scale(self.pic_cherry, (50, 50))
         self.pic_banana = pg.transform.scale(self.pic_banana, (50, 50))
 

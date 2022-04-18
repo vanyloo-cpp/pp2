@@ -29,7 +29,7 @@ font = pygame.font.SysFont("Verdana", 60)
 font_small = pygame.font.SysFont("Verdana", 20)
 game_over_text = font.render("Game Over", True, black_color)
 
-background_image = pygame.image.load(r"C:\Users\Самир\Desktop\pp2\LAB9\racer\images\street.png")
+background_image = pygame.image.load(r"C:\Users\Самир\Desktop\pp2\lab9\racer\images\street.png")
 
 # Create a white screen
 display_surface = pygame.display.set_mode((400, 600))
@@ -37,7 +37,7 @@ display_surface.fill(white_color)
 pygame.display.set_caption("Game")
 
 # background sound
-pygame.mixer.music.load(r"C:\Users\Самир\Desktop\pp2\LAB9\racer\music\back music.wav")
+pygame.mixer.music.load(r"C:\Users\Самир\Desktop\pp2\lab9\racer\music\back music.wav")
 pygame.mixer.music.play(-1) # i use -1 to loop the music
 
 # Create a sprite group Enemy
@@ -45,7 +45,7 @@ class Enemy(pygame.sprite.Sprite):
     # constructor
     def __init__(self):
         super().__init__()
-        self.image = pygame.image.load(r"C:\Users\Самир\Desktop\pp2\LAB9\racer\images\enemy.png")
+        self.image = pygame.image.load(r"C:\Users\Самир\Desktop\pp2\lab9\racer\images\enemy.png")
         self.rect = self.image.get_rect()
         self.rect.center = (random.randint(40, screen_width - 40), 0)
     # move method
@@ -62,7 +62,7 @@ class Player(pygame.sprite.Sprite):
     # constructor
     def __init__(self):
         super().__init__()
-        self.image = pygame.image.load(r"C:\Users\Самир\Desktop\pp2\LAB9\racer\images\player.png")
+        self.image = pygame.image.load(r"C:\Users\Самир\Desktop\pp2\lab9\racer\images\player.png")
         self.rect = self.image.get_rect()
         self.rect.center = (160, 520)
     # move method
@@ -80,7 +80,7 @@ class Coin(pygame.sprite.Sprite):
     # constructor
     def __init__(self):
         super().__init__()
-        self.image = pygame.image.load(r"C:\Users\Самир\Desktop\pp2\LAB9\racer\images\gold coin.png")
+        self.image = pygame.image.load(r"C:\Users\Самир\Desktop\pp2\lab9\racer\images\gold coin.png")
         self.rect = self.image.get_rect()
         self.rect.center = (random.randint(40, screen_width - 40), 0)
 
@@ -95,7 +95,7 @@ class Coin(pygame.sprite.Sprite):
 class BigCoin(pygame.sprite.Sprite):
     def __init__(self):
         super().__init__()
-        self.image = pygame.image.load(r"C:\Users\Самир\Desktop\pp2\LAB9\racer\images\red coin.png")
+        self.image = pygame.image.load(r"C:\Users\Самир\Desktop\pp2\lab9\racer\images\red coin.png")
         self.rect = self.image.get_rect()
     def move(self):
         self.rect.move_ip(0, speed)
@@ -165,7 +165,7 @@ while True:
 
     # To be run if collision occurs between Player and Enemy
     if pygame.sprite.spritecollideany(player, enemies):
-        pygame.mixer.Sound(r"C:\Users\Самир\Desktop\pp2\LAB9\racer\music\crash.wav").play()
+        pygame.mixer.Sound(r"C:\Users\Самир\Desktop\pp2\lab9\racer\music\crash.wav").play()
         time.sleep(0.5)
 
         display_surface.fill(red_color)
