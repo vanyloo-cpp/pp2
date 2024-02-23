@@ -1,4 +1,4 @@
-def category(zhanr):
+def category(genre):
     l = []
     movies = [ { "name": "Usual Suspects", "imdb": 7.0, "category": "Thriller" }, 
               { "name": "Hitman", "imdb": 6.3, "category": "Action" },
@@ -16,7 +16,7 @@ def category(zhanr):
               { "name": "Exam", "imdb": 4.2, "category": "Thriller" },
               { "name": "We Two", "imdb": 7.2, "category": "Romance" } ]
     for i in movies:
-        if i["category"]==zhanr:
+        if i["category"]==genre:
             l.append(i["name"])
     return ', '.join(l)
             
