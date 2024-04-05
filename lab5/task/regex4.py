@@ -1,4 +1,4 @@
-# Write a Python program to find the sequences of one upper case letter followed by lower case letters.
+# Напишите программу на Python, чтобы найти последовательность одной буквы верхнего регистра, за которой следуют строчные буквы.
 import re
 s = input()
 result = re.findall(r"[A-Z][a-z]+", s)

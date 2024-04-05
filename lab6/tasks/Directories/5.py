@@ -4,6 +4,6 @@ import os
 color = ["colum", "word", "number"]
 with open('C:/Users/Самир/Desktop/pp2/lab6/tasks/Directories/s.txt', "w") as fr:
         for i in color:
-                fr.write("%s\n" % i)
-content = open('s.txt')
+                fr.write("%s/n" % i)
+content = open('C:/Users/Самир/Desktop/pp2/lab6/tasks/Directories/s.txt')
 print(content.read())

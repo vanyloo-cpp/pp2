@@ -1,4 +1,4 @@
-#Write a Python program to list only directories, files and all directories, files in a specified path.
+#Напишите программу на Python, которая будет отображать только каталоги, файлы и все каталоги и файлы по указанному пути.
 
 import os
 path = 'C:/Users/Самир/Desktop/pp2/lab6/file_handing'
