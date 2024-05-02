@@ -1,0 +1,100 @@
+import psycopg2
+from config import host, user, password, database
+
+try:
+    # Connection to existing database
+    connection = psycopg2.connect(
+        host=host,
+        user=user,
+        password=password,
+        database=database
+    )
+    connection.autocommit = True
+
+    while True:
+        action = input("Enter 'csv' to upload data from csv, 'c' to input with console, 'u' for update data, 'd' to delete data, 's' show table, or 'q' to quit:")
+        
+        if action == 'csv':
+            csv_file_path = input("Path to your csv file:")
+            try:
+                with connection.cursor() as cursor:
+                    with open(csv_file_path, 'r') as file:
+                        reader = csv.reader(file)
+                        next(reader)  # Skip header
+                        for row in reader:
+                            cursor.execute("INSERT INTO phonebook (name, phone_number) VALUES (%s, %s)", row)
+                print("[INFO] Data was successfully inserted")
+            
+            except Exception as _ex:
+                print("[INFO] Error while working with PostgreSQL", _ex)
+                
+        elif action == 'c':
+            while True:
+                name = input("Enter name:")
+                phone_number = input("Enter phone number:")
+                try:
+                    with connection.cursor() as cursor:
+                        cursor.execute("INSERT INTO phonebook (name, phone_number) VALUES (%s, %s)", (name, phone_number))
+                    print("[INFO] Data was successfully inserted")
+                except Exception as _ex:
+                    print("[INFO] Error while working with PostgreSQL", _ex)  
+                quit_action = input("Enter 'q' to close console or any other key to continue:")
+                if quit_action == 'q':
+                    break
+                    
+        elif action == 'u':
+            user_id = input("Enter name of the contact you want to update:")
+            update_field = input("Enter 'n' to update name or 'p' to update phone number:")
+            new_value = input("Enter the new value:")
+            try:
+                with connection.cursor() as cursor:
+                    if update_field == 'n':
+                        cursor.execute("UPDATE phonebook SET name = %s WHERE name = %s", (new_value, user_id))
+                    elif update_field == 'p':
+                        cursor.execute("UPDATE phonebook SET phone_number = %s WHERE name = %s", (new_value, user_id))
+                    else:
+                        print("[INFO] Invalid update field specified.")
+                        continue
+                print("[INFO] Data was successfully updated")
+            except Exception as _ex:
+                print("[INFO] Error while working with PostgreSQL", _ex)  
+                    
+        elif action == 'd':
+            user_id = input("Enter the name of the contact you want to delete:")
+            try:
+                with connection.cursor() as cursor:
+                    cursor.execute("DELETE FROM phonebook WHERE name = %s", (user_id,))
+                print("[INFO] Data was successfully deleted")
+            except Exception as _ex:
+                print("[INFO] Error while working with PostgreSQL", _ex)
+
+        elif action == 's':
+            show_table = input("Enter 'n' to show name, 'p' to show phone number, 'a' to in alphabetical order:")
+            try:
+                with connection.cursor() as cursor:
+                    if show_table == 'n':
+                        cursor.execute("SELECT name FROM phonebook")
+                    elif show_table == 'p':
+                        cursor.execute("SELECT phone_number FROM phonebook")
+                    elif show_table == 'a':
+                        cursor.execute("SELECT * FROM phonebook ORDER BY name")
+                    else:
+                        print("[INFO] Invalid option.")
+                        continue
+
+                    rows = cursor.fetchall()
+                    if rows:
+                        for row in rows:
+                            print(row)
+                    else:
+                        print("[INFO] No data found.")
+            except Exception as _ex:
+                print("[INFO] Error while working with PostgreSQL", _ex)
+
+            
+        elif action == 'q':
+            break        
+finally:
+    if connection:
+        connection.close()
+        print("[INFO] PostgreSQL connection closed")
